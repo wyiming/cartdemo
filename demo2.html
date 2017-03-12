@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html ng-app="app">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="angular-lib/angular.min.js"></script>
+    <style>
+      div{
+        width: 400px;height: 60px;
+        border: solid 1px black;
+      }
+    </style>
+  </head>
+  <body>
+
+    <div my-touch="touch()"></div>
+
+    <div my-touch="touch()"></div>
+<script>
+
+//ng-touch
+angular.module('app',[])
+.controller('ctrl',function($scope){
+    $scope.touch = function(){
+      console.log('touch')
+    }
+})
+.directive('myTouch',function(){
+    return{
+      link:function(scope,ele,attrs){
+
+          // console.log(this)
+          console.log(ele)
+          angular.element(ele).on('touchstart',function(e){
+            console.log(this)
+            this.style.backgroundColor = '#faa';
+          })
+      }
+    }
+})
+// .directive('myTouch',function(){
+//     return function(scope,ele,attrs){
+//
+//         // console.log(this)
+//         console.log(ele)
+//         angular.element(ele).on('touchstart',function(e){
+//           console.log(this)
+//           this.style.backgroundColor = '#faa';
+//         })
+//     }
+// })
+
+</script>
+  </body>
+</html>

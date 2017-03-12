@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html ng-app="app">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="angular-lib/angular.min.js"></script>
+    <style>
+
+      div{
+        width: 400px;height: 60px;
+        border: solid 1px black;
+      }
+    </style>
+  </head>
+  <body ng-controller="ctrl">
+
+    <hello></hello>
+
+    <my-header title="首页" name="name" show="show()"></my-header>
+    <my-header title="分类" name="name" show="show()"></my-header>
+<script>
+
+/*
+e: element
+*/
+
+angular.module('app',[])
+.controller('ctrl',function($scope){
+    $scope.name = "杨幂"
+    $scope.show = function(){
+      console.log('哈哈哈哈')
+    }
+})
+.directive('hello',function(){
+    return{
+      restrict:"ECMA",
+      replace:true,
+      template:'<h1>hello directive</h1>'
+    }
+})
+.directive('myHeader',function(){
+    return{
+      restrict:'E',
+      replace:true,
+      scope:{
+        title:"@",
+        name:'=',
+        show:'&'
+      },
+      template:'<div ng-click="show()">{{title}}</div>'
+    }
+})
+
+
+</script>
+  </body>
+</html>

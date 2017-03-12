@@ -1,0 +1,46 @@
+<!doctype html>
+<html ng-app="myApp">
+
+<head>
+  <meta charset="utf-8">
+  <title>angular 购物车</title>
+  <style>
+    .cursors {
+      cursor: pointer
+    }
+  </style>
+  <script src="angular-lib/jquery-1.12.3.js"></script>
+  <script src="angular-lib/angular.min.js"></script>
+  <script src="src/app.js"></script>
+  <script src="src/controller.js"></script>
+  <script src="src/directives.js"></script>
+  <script src="src/service.js"></script>
+</head>
+
+<body ng-controller="myAngular">
+  <table border="1">
+    <tr>
+      <td><label all-orcan><input type="checkbox">全选/取消全选 </label></td>
+      <td>名称</td>
+      <td>数量</td>
+      <td>单价</td>
+      <td>价格</td>
+    </tr>
+    <tr ng-repeat="data in dataList">
+      <td>
+        <input type="checkbox" one-check dataid={{data.id}}>
+      </td>
+      <td ng-cloak>{{data.name}}</td>
+      <td>
+        <input type="text" ng-cloak ng-model="data.num" dataid="{{data.id}}" style="width:50px;text-align:center;">
+        <button my-adds dataid="{{data.id}}" ng-class="{cursors:true}">+</button>
+        <button my-minus dataid="{{data.id}}" ng-class="{cursors:true}">-</button>　
+      </td>
+      <td ng-cloak>{{data.oneprice}}</td>
+      <td ng-cloak>{{data.price}}</td>
+    </tr>
+  </table>
+  <div>总价格：{{allPrices()}}</div>
+</body>
+
+</html>
